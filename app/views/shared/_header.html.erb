@@ -1,0 +1,41 @@
+<style>
+  a, a:visited, a:hover, a:active {
+  color: inherit;
+  }
+  .header{
+    background-color:gray;
+    color:white;
+    width:100%;
+    padding:30px
+  }
+  .status{
+    margin-left:50px;
+  }
+  .welcome{
+    font-size:42px;
+  }
+  .sign-out{
+    margin-left:30px;
+  }
+  .sign-in{
+    margin-left:30px;
+  }
+
+  .alerts{
+    width:100%;
+    background-color:pink;
+    padding:10px;
+    font-size:16px;
+  }
+}
+</style>
+<div class="header" style="b">
+  <% if logged_in? %> <span class="welcome">Welcome <%= current_user.user_name.capitalize %> </span> <% else %> <span> You are not signed in </span> <% end %>
+  
+  <% if logged_in? %> <%= link_to "Sign out", session_url(current_user.id), method: :delete, class: 'sign-out' %> <% else %> <%= link_to "Sign in", new_session_url, class: 'sign-in' %> <% end %>
+</div>
+<% if flash[:alert] %>
+  <div class="alerts">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
